@@ -1,0 +1,35 @@
+---
+- hosts: linux-server
+  tasks:
+    - name: add group
+      group: name=willi.fehler gid=1000 state=present
+      
+    - group: name=toni.fehler gid=1001 state=present
+ 
+    - name: adding user
+      user: name=willi.fehler comment="Willi Fehler" uid=1000 groups=willi.fehler,wheel 
+      
+    - user: name=toni.fehler comment="Toni Fehler" uid=1001 group=toni.fehler
+
+    - name: managed ssh keys
+      authorized_key: 
+        user=willi.fehler key="{{ lookup('file', 'willifehler.pub') }}"
+        user=toni.fehler key="{{ lookup('file', 'tonifehler.pub') }}"
+
+    - name: make sure we have a wheel group
+      group:
+        name: wheel
+        state: present
+
+    - name: ensure /etc/sudoers.d directory is present
+      file: path=/etc/sudoers.d state=directory
+
+    - name: ensure /etc/sudoers.d/tonifehler is present
+      file: path=/etc/sudoers.d/tonifehler state=touch mode=044 owner=root group=root
+ 
+    - name: add sudo permissions to /etc/sudoers.d/tonifehler
+      action: 'lineinfile dest=/etc/sudoers.d/tonifehler state=present create=yes regexp="toni.fehler" line="toni.fehler ALL = NOPASSWD: /bin/systemctl restart ntpd"'
+
+    - name: manging sudoers files
+      lineinfile: 
+        "dest=/etc/sudoers state=present regexp='^%wheel' line='%wheel        ALL=(ALL)       NOPASSWD: ALL'"

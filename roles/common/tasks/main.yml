@@ -1,0 +1,21 @@
+---
+- name: manage selinux
+  selinux: state=disabled
+
+- name: install common packages
+  yum: name={{ item }} state=present
+  with_items:
+    - htop
+    - iftop
+    - iotop
+
+- name: ensure ntp is at the latest version
+  yum: name=ntp state=latest
+
+- name: write the ntp config file
+  template: src=templates/ntp.conf.j2 dest=/etc/ntp.conf
+  notify:
+    - restart ntp
+
+- name: ensure ntp is running
+  service: name=ntpd state=started

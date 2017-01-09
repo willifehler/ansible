@@ -1,0 +1,58 @@
+---
+- hosts: localhost
+  vars_files:
+    - /root/roles/mysql/defaults/main.yml
+  tasks:
+
+  - name: install MariaDB package
+    yum: name={{ item }} state=installed
+    with_items:
+     - mariadb-server
+     - MySQL-python
+
+  - name: generate new root password
+    command: openssl rand -hex 7 creates=/root/.my.cnf
+    register: mysql_new_root_pass
+
+  - name: remove anonymous users
+    mysql_user: name="" state=absent
+    when: mysql_new_root_pass.changed
+   
+  - name: remove test database
+    mysql_db: name=test state=absent
+    when: mysql_new_root_pass.changed
+ 
+  - name: output new root password
+    debug: msg="new root password is {{mysql_new_root_pass.stdout}}"
+    when: mysql_new_root_pass.changed
+
+  - name: update root password
+    mysql_user: name=root host={{item}} password={{mysql_new_root_pass.stdout}}
+    with_items:
+      - "{{ansible_hostname}}"
+      - 127.0.0.1
+      - ::1
+      - localhost
+    when: mysql_new_root_pass.changed
+
+  - name: create root .my.cnf
+    template: src=/root/roles/mysql/templates/root_my.cnf.j2 dest=/root/.my.cnf
+    when: mysql_new_root_pass.changed
+
+  - name: create MySQL configuration file
+    template: src=/root/roles/mysql/templates/my.cnf.j2 dest=/etc/my.cnf
+    notify:
+      - restart mariadb
+ 
+  - name: start MySQL service
+    service: name=mariadb state=started enabled=yes
+
+  - name: create application database
+    mysql_db: name=willifehler state=present
+ 
+  - name: Create Application DB User
+    mysql_user: name=willifehler password=test priv=willifehler.*:ALL host='%' state=present
+
+  handlers: 
+    - name: restart mariadb
+      service: name=mariadb state=restarted
