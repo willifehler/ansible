@@ -2,12 +2,17 @@
 - name: manage selinux
   selinux: state=disabled
 
+- name: install epel repository
+  yum: name=epel-release state=latest
+
 - name: install common packages
-  yum: name={{ item }} state=present
+  yum: name={{ item }} state=latest
   with_items:
     - htop
     - iftop
     - iotop
+    - vim
+    - git
 
 - name: ensure ntp is at the latest version
   yum: name=ntp state=latest

@@ -1,5 +1,0 @@
----
-- name: install common stuff
-  hosts: all
-  roles:
-    - common
