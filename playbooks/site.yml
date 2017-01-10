@@ -3,4 +3,5 @@
   hosts: all
   roles:
     - roles/common
+    - roles/httpd
     - roles/mysql

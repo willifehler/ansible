@@ -1,40 +1,32 @@
 ---
-- hosts: localhost
-  tasks:
-    - name: install the latest version of Apache
-      yum: name=httpd state=latest
-      notify:
-        - start httpd
+- name: install the latest version of Apache
+  yum: name=httpd state=latest
+  notify:
+    - start httpd
 
-    - name: install the ius.io rpm from a remote repo
-      yum: name=https://centos7.iuscommunity.org/ius-release.rpm state=present
+- name: install the ius.io rpm from a remote repo
+  yum: name=https://centos7.iuscommunity.org/ius-release.rpm state=present
 
-    - name: install the latest php from ius.io
-      yum: name={{ item }} enablerepo=ius state=latest
-      with_items:
-        - mod_php70u
-        - php70u-cli
-        - php70u-gd
-        - php70u-mbstring
-        - php70u-mcrypt
-        - php70u-mysqlnd
-      notify:
-        - restart httpd
+- name: install the latest php from ius.io
+  yum: name={{ item }} enablerepo=ius state=latest
+  with_items:
+    - mod_php70u
+    - php70u-cli
+    - php70u-gd
+    - php70u-mbstring
+    - php70u-mcrypt
+    - php70u-mysqlnd
+  notify:
+    - restart httpd
 
-    - name: create a info.php file
-      copy:
-        content: |
-          <?php
-          phpinfo();
-          ?>
-        dest: /var/www/html/info.php
-        force: no
-        group: apache
-        owner: apache
-        mode: 0644
-
-  handlers:
-    - name: start httpd
-      service: name=httpd state=started enabled=yes
-    - name: restart httpd
-      service: name=httpd state=restarted
+- name: create a info.php file
+  copy:
+    content: |
+      <?php
+      phpinfo();
+      ?>
+    dest: /var/www/html/info.php
+    force: no
+    group: apache
+    owner: apache
+    mode: 0644
