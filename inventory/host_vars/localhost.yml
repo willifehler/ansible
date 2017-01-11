@@ -3,5 +3,7 @@ ntp_servers:
 - 3.de.pool.ntp.org
 - 4.de.pool.ntp.org
 server_id: 21
-vhost_server_name: www.willi-fehler.de 
-vhost_server_alias: willi-fehler.de
+apache_vhosts_filename: "willi-fehler.de.conf"
+apache_vhosts: 
+  - servername: "www.willi-fehler.de"
+  - servername: "www.toni-fehler.de"

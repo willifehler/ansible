@@ -1,7 +1,8 @@
+{% for vhost in apache_vhosts %}
 <VirtualHost *:80>
-    ServerName {{ vhost_server_name }} 
-    DocumentRoot /var/www/{{ vhost_server_name }}
-    ServerAlias {{ vhost_server_alias }}
-    ErrorLog /var/log/httpd/{{ vhost_server_name }}-error.log
-    CustomLog /var/log/httpd/{{ vhost_server_name }}-access.log combined
+    ServerName {{ vhost.servername }} 
+    DocumentRoot /var/www/{{ vhost.servername }}
+    ErrorLog /var/log/httpd/{{ vhost.servername }}-error.log
+    CustomLog /var/log/httpd/{{ vhost.servername }}-access.log combined
 </VirtualHost>
+{% endfor %}
