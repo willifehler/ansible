@@ -1,5 +1,16 @@
+{% if apache_vhosts is defined %}
 <VirtualHost *:80>
 {% for v in apache_vhosts[item] %}
   {{v}}
 {% endfor %}
 </VirtualHost>
+{% endif %}
+
+{% if apache_vhosts_ssl is defined %}
+NameVirtualHost *:443
+<VirtualHost *:443>
+{% for v in apache_vhosts_ssl[item] %}
+  {{v}}
+{% endfor %}
+</VirtualHost>
+{% endif %}
