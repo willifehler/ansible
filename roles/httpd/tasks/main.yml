@@ -32,6 +32,7 @@
     mode: 0644
 
 - name: create vhost configuration file
-  template: src=templates/vhost.j2 dest="/etc/httpd/conf.d/{{ apache_vhosts_filename }}"
+  template: src=templates/vhost.j2 dest="/etc/httpd/conf.d/{{ item }}.conf"
+  with_items: "{{ apache_vhosts.keys() }}"
   notify:
     - restart httpd

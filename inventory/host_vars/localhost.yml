@@ -1,9 +1,21 @@
 ---
+#ntp
 ntp_servers:
 - 3.de.pool.ntp.org
 - 4.de.pool.ntp.org
+#mysql
 server_id: 21
-apache_vhosts_filename: "willi-fehler.de.conf"
+#httpd
 apache_vhosts: 
-  - servername: "www.willi-fehler.de"
-  - servername: "www.toni-fehler.de"
+  willi-fehler.de:
+    - DocumentRoot /var/www/willi-fehler 
+    - ServerName willi-fehler.de
+    - ServerAlias *.willi-fehler.de 
+    - ErrorLog /var/log/httpd/willi-fehler.de-error.log
+    - CustomLog /var/log/httpd/willi-fehler.de-access.log combined
+  toni-fehler.de:
+    - DocumentRoot /var/www/toni-fehler
+    - ServerName toni-fehler.de
+    - ServerAlias *.toni-fehler.de
+    - ErrorLog /var/log/httpd/toni-fehler.de-error.log
+    - CustomLog /var/log/httpd/toni-fehler.de-access.log combined
