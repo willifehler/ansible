@@ -1,5 +1,5 @@
 ---
-- name: install lamps configuration for localhost
+- name: install LAMP configuration on localhost
   hosts: localhost
   roles:
     - roles/common

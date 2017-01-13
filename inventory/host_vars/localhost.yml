@@ -7,8 +7,8 @@ ntp_servers:
 #MySQL
 server_id: 21
 mysql_databases:
-  - name: foo
-  - name: boo
+  - name: willifehler
+  - name: tonifehler
 mysql_users:
   - name: willifehler
     password: test
@@ -19,14 +19,14 @@ mysql_users:
 apache_vhosts: 
   willi-fehler.de:
     - ServerAdmin willi@willi-fehler.de
-    - DocumentRoot "/var/www/willi-fehler"
+    - DocumentRoot "/var/www/willi-fehler.de"
     - ServerName willi-fehler.de
     - ServerAlias *.willi-fehler.de 
     - ErrorLog /var/log/httpd/willi-fehler.de-error.log
     - CustomLog /var/log/httpd/willi-fehler.de-access.log combined
   toni-fehler.de:
     - ServerAdmin toni@toni-fehler.de
-    - DocumentRoot "/var/www/toni-fehler"
+    - DocumentRoot "/var/www/toni-fehler.de"
     - ServerName toni-fehler.de
     - ServerAlias *.toni-fehler.de
     - ErrorLog /var/log/httpd/toni-fehler.de-error.log
