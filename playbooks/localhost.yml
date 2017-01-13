@@ -1,5 +1,5 @@
 ---
-- name: install common stuff
+- name: install lamps configuration for localhost
   hosts: localhost
   roles:
     - roles/common
