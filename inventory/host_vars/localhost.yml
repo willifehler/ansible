@@ -9,6 +9,10 @@ server_id: 21
 mysql_databases:
   - name: foo
   - name: boo
+mysql_user:
+  - name: willifehler
+  - password: test
+  - priv: "willifehler.*:ALL host='%'"
 
 #Apache
 apache_vhosts: 

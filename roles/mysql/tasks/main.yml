@@ -42,7 +42,7 @@
 - name: start MySQL service
   service: name=mariadb state=started enabled=yes
 
-- name: create mysql databases
+- name: create MySQL databases
   mysql_db:
     name: "{{ item.name }}"
     collation: "{{ item.collation | default('utf8_general_ci') }}"
@@ -50,5 +50,12 @@
     state: present
   with_items: "{{ mysql_databases }}"
 
-#- name: create application database user
+- name: create MySQL database user
+  mysql_user:
+    name: "{{ item.name }}"
+    password: "{{ item.password }}"
+    priv: "{{ item.priv  }}"
+    state: present
+  with_items: "{{ mysql_user }}"
+
 #  mysql_user: name=willifehler password=test priv=willifehler.*:ALL host='%' state=present
