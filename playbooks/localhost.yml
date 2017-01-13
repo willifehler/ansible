@@ -2,6 +2,6 @@
 - name: install common stuff
   hosts: localhost
   roles:
-    #- roles/common
-    #- roles/httpd
+    - roles/common
+    - roles/httpd
     - roles/mysql
