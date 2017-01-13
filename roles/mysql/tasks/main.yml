@@ -5,6 +5,9 @@
     - mariadb-server
     - MySQL-python
 
+- name: start MySQL service
+  service: name=mariadb state=started enabled=yes
+
 - name: generate new root password
   command: openssl rand -hex 7 creates=/root/.my.cnf
   register: mysql_new_root_pass
@@ -39,9 +42,6 @@
   notify:
     - restart mariadb
  
-- name: start MySQL service
-  service: name=mariadb state=started enabled=yes
-
 - name: create MySQL databases
   mysql_db:
     name: "{{ item.name }}"

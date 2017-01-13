@@ -4,8 +4,9 @@
   with_items:
     - httpd
     - mod_ssl
-  notify:
-    - start httpd
+
+- name: start httpd
+  service: name=httpd state=started enabled=yes
 
 - name: install the ius.io rpm from a remote repo
   yum: name=https://centos7.iuscommunity.org/ius-release.rpm state=present
