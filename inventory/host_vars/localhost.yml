@@ -1,8 +1,9 @@
 ---
 #ntp
 ntp_servers:
-- 3.de.pool.ntp.org
-- 4.de.pool.ntp.org
+- 0.centos.pool.ntp.org
+- 1.centos.pool.ntp.org
+- 2.centos.pool.ntp.org
 
 #MySQL
 server_id: 21
@@ -16,6 +17,9 @@ mysql_users:
     host: '%'
 
 #Apache
+apache_documentroot: 
+  - { name: "willi-fehler", directory: "/var/www/willi-fehler.de" } 
+  - { name: "toni-fehler", directory: "/var/www/toni-fehler.de" } 
 apache_vhosts: 
   willi-fehler.de:
     - ServerAdmin willi@willi-fehler.de

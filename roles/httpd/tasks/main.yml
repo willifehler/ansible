@@ -35,6 +35,12 @@
     owner: apache
     mode: 0644
 
+- name: create Apache DocumentRoot
+  file: dest="{{ item.directory }}" 
+        mode=755 
+        state=directory 
+  with_items: "{{ apache_documentroot }}"
+
 - name: create vhost configuration file
   template: src=templates/vhost.j2 dest="/etc/httpd/conf.d/{{ item }}.conf"
   with_items: "{{ apache_vhosts.keys() }}"
