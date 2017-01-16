@@ -3,6 +3,6 @@
   hosts: localhost
   roles:
     - roles/user
-    #- roles/common
-    #- roles/httpd
-    #- roles/mysql
+    - roles/common
+    - roles/httpd
+    - roles/mysql
