@@ -2,6 +2,7 @@
 - name: install LAMP configuration on localhost
   hosts: localhost
   roles:
-    - roles/common
-    - roles/httpd
-    - roles/mysql
+    - roles/user
+    #- roles/common
+    #- roles/httpd
+    #- roles/mysql

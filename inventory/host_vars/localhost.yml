@@ -5,6 +5,34 @@ ntp_servers:
 - 1.centos.pool.ntp.org
 - 2.centos.pool.ntp.org
 
+#User
+group:
+  - name: willi.fehler
+    gid: 1000
+  - name: toni.fehler
+    gid: 1001
+user:
+  - name: willi.fehler
+    comment: "Willi Fehler"
+    uid: 1000
+    groups: "willi.fehler,wheel"
+  - name: toni.fehler
+    comment: "Toni Fehler"
+    uid: 1001
+    groups: "toni.fehler,wheel"
+authorized_key:
+  - user: willi.fehler
+    key: "{{ lookup('file', 'willifehler.pub') }}"  
+  - user: toni.fehler
+    key: "{{ lookup('file', 'tonifehler.pub') }}"
+sudofile:
+  - path: /etc/sudoers.d/toni.fehler
+  - path: /etc/sudoers.d/willi.fehler
+sudopermission:
+  - path: /etc/sudoers.d/toni.fehler
+    line: "ALL = NOPASSWD: /bin/systemctl restart ntpd"
+    regexp: "toni.fehler" 
+ 
 #MySQL
 server_id: 21
 mysql_databases:
