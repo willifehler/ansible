@@ -19,16 +19,16 @@ user:
   - name: toni.fehler
     comment: "Toni Fehler"
     uid: 1001
-    groups: "toni.fehler,wheel"
+    groups: "toni.fehler"
 authorized_key:
   - user: willi.fehler
-    key: "{{ lookup('file', 'willifehler.pub') }}"  
+    key: "willifehler.pub"  
   - user: toni.fehler
-    key: "{{ lookup('file', 'tonifehler.pub') }}"
-sudofile:
+    key: "tonifehler.pub"
+sudopath:
   - path: /etc/sudoers.d/toni.fehler
   - path: /etc/sudoers.d/willi.fehler
-sudopermission:
+privileges:
   - path: /etc/sudoers.d/toni.fehler
     line: "ALL = NOPASSWD: /bin/systemctl restart ntpd"
     regexp: "toni.fehler" 

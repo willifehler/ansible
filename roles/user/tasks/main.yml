@@ -17,7 +17,7 @@
 - name: add keys
   authorized_key:
     user={{ item.user }} 
-    key={{ item.key }}
+    key="{{ lookup('file', '{{ item.key }}') }}"
   with_items: "{{ authorized_key }}"
  
 - name: make sure we have a wheel group
@@ -35,7 +35,7 @@
     mode=044 
     owner=root 
     group=root
-  with_items: "{{ sudofile }}" 
+  with_items: "{{ sudopath }}" 
 
 - name: add sudo permissions to /etc/sudoers.d/
   lineinfile:
@@ -44,7 +44,7 @@
     create=yes
     line={{ item.line }}
     regexp={{ item.regexp }}
-  with_items: "{{ sudopermission }}"
+  with_items: "{{ privileges }}"
 
 - name: manging sudoers file
   lineinfile: 
