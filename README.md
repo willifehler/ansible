@@ -1,2 +1,11 @@
 # ansible
-Ansible Project for CentOS 7 which install a LAMP server
+My Ansible playbooks for manging CentOS 7
+
+* user
+* common
+* httpd/php
+* mysql
+
+
+
+
