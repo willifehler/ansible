@@ -20,7 +20,7 @@ user:
     comment: "Toni Fehler"
     uid: 1001
     groups: "toni.fehler"
-authorized_key:
+authorized_keys:
   - user: willi.fehler
     key: "willifehler.pub"  
   - user: toni.fehler
