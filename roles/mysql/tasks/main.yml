@@ -5,6 +5,12 @@
     - mariadb-server
     - MySQL-python
 
+- name: configure useful swappiness setting
+  sysctl:
+    name: vm.swappiness
+    value: 1
+    state: present
+
 - name: start MySQL service
   service: name=mariadb state=started enabled=yes
 
