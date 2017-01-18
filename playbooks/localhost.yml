@@ -5,4 +5,5 @@
     - roles/user
     - roles/common
     - roles/httpd
+    - roles/php
     - roles/mysql
