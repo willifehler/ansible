@@ -19,6 +19,11 @@
   notify:
     - restart httpd
 
+- name: create hostname configuration file
+  template: src=templates/hostname.conf.j2 dest="/etc/httpd/conf.d/hostname.conf"
+  notify:
+    - restart httpd
+
 - name: create vhost configuration file
   template: src=templates/vhost.j2 dest="/etc/httpd/conf.d/{{ item }}.conf"
   with_items: "{{ apache_vhosts.keys() }}"
