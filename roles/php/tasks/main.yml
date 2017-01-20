@@ -5,12 +5,12 @@
 - name: install the latest php from ius.io
   yum: name={{ item }} enablerepo=ius state=latest
   with_items:
-    - mod_php70u
-    - php70u-cli
-    - php70u-gd
-    - php70u-mbstring
-    - php70u-mcrypt
-    - php70u-mysqlnd
+    - mod_php71u
+    - php71u-cli
+    - php71u-gd
+    - php71u-mbstring
+    - php71u-mcrypt
+    - php71u-mysqlnd
   notify:
     - restart httpd
 
