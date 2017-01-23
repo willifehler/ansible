@@ -77,7 +77,7 @@ SSLProtocol {{ apache_sslprotocol | default('all -SSLv2 -SSLv3') }}
 #   SSL Cipher Suite:
 #   List the ciphers that the client is permitted to negotiate.
 #   See the mod_ssl documentation for a complete list.
-SSLCipherSuite {{ apache_sslprotocol | default('EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH') }}
+SSLCipherSuite {{ apache_sslciphersuite | default('EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH') }}
 
 #   Speed-optimized SSL Cipher configuration:
 #   If speed is your main concern (on busy HTTPS servers e.g.),
