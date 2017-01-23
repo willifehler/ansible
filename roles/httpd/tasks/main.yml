@@ -14,8 +14,13 @@
         state=directory 
   with_items: "{{ apache_documentroot }}"
 
-- name: create security configuration file
+- name: create httpd configuration file
   template: src=templates/httpd.conf.j2 dest="/etc/httpd/conf/httpd.conf"
+  notify:
+    - restart httpd
+
+- name: create ssl configuration file
+  template: src=templates/ssl.conf.j2 dest="/etc/httpd/conf.d/ssl.conf"
   notify:
     - restart httpd
 
