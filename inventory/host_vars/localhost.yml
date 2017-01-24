@@ -84,6 +84,3 @@ apache_vhosts_ssl:
     - SSLEngine on
     - SSLCertificateFile /etc/pki/tls/certs/localhost.crt
     - SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
-
-#PHP
-expose_php: 'Off'
