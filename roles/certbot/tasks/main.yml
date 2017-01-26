@@ -7,7 +7,7 @@
   register: cert_stats
 
 - name: generate certs (first time)
-  shell: "certbot certonly --apache {{ letsencrypt_domain_flags | join(' ') }} --email {{ letsencrypt_email}} --non-interactive --agree-tos"
+  shell: "certbot certonly --standalone {{ letsencrypt_domain_flags | join(' ') }} --email {{ letsencrypt_email}} --non-interactive --agree-tos"
   when: cert_stats.stat.exists == False
 
 - cron:
