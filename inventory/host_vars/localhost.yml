@@ -32,6 +32,10 @@ privileges:
   - path: /etc/sudoers.d/toni.fehler
     line: "ALL = NOPASSWD: /bin/systemctl restart ntpd"
     regexp: "toni.fehler" 
+
+letsencrypt_email: 'willi.fehler@t-online.de'
+letsencrypt_domain_flags:
+  - "-d willi-net.ddns.net"
  
 #MySQL
 server_id: 21
@@ -67,13 +71,14 @@ apache_vhosts_ssl:
   willi-fehler.de:
     - ServerAdmin willi@willi-fehler.de
     - DocumentRoot "/var/www/willi-fehler.de"
-    - ServerName willi-fehler.de
-    - ServerAlias *.willi-fehler.de
+    - ServerName willi-net.ddns.net
+    - ServerAlias *.willi-fehler.de willi-fehler.de
     - ErrorLog /var/log/httpd/willi-fehler.de-error.log
     - CustomLog /var/log/httpd/willi-fehler.de-access.log combined
     - SSLEngine on
-    - SSLCertificateFile /etc/pki/tls/certs/localhost.crt
-    - SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
+    - SSLCertificateFile /etc/letsencrypt/live/willi-net.ddns.net/cert.pem
+    - SSLCertificateKeyFile /etc/letsencrypt/live/willi-net.ddns.net/privkey.pem
+    - SSLCertificateChainFile /etc/letsencrypt/live/willi-net.ddns.net/chain.pem
   toni-fehler.de:
     - ServerAdmin toni@toni-fehler.de
     - DocumentRoot "/var/www/toni-fehler.de"

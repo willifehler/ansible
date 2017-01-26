@@ -4,6 +4,7 @@
   roles:
     - roles/user
     - roles/common
+    - roles/certbot
     - roles/httpd
     - roles/php
     - roles/mysql
