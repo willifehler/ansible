@@ -6,6 +6,7 @@ My Ansible playbooks for manging CentOS 7
 * httpd
 * php
 * mysql
+* certbot
 
 
 
