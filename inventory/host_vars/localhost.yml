@@ -33,6 +33,7 @@ privileges:
     line: "ALL = NOPASSWD: /bin/systemctl restart ntpd"
     regexp: "toni.fehler" 
 
+#Certbot
 letsencrypt_email: 'willi.fehler@t-online.de'
 letsencrypt_domain_flags:
   - "-d willi-net.ddns.net"
