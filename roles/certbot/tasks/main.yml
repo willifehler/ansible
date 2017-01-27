@@ -11,7 +11,7 @@
   when: cert_stats.stat.exists == False
 
 - name: create cronjob automatically renew certificates
-- cron:
+  cron:
     name: "renew certificates"
     weekday: "1"
     minute: "30"
