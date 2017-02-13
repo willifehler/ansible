@@ -29,6 +29,11 @@
   notify:
     - restart httpd
 
+- name: create security configuration file
+  template: src=templates/security.conf.j2 dest="/etc/httpd/conf.d/security.conf"
+  notify:
+    - restart httpd
+
 - name: create vhost configuration file
   template: src=templates/vhost.j2 dest="/etc/httpd/conf.d/{{ item }}.conf"
   with_items: "{{ apache_vhosts.keys() }}"

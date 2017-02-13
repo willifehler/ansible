@@ -354,12 +354,3 @@ IncludeOptional conf.d/*.conf
 
 #Timeout
 Timeout {{ apache_timeout | default('30') }}
-
-#Security
-ServerSignature {{ apache_serversignature | default('Off') }}
-ServerTokens {{ apache_servertokens | default('Prod') }}
-Header always set X-Frame-Options DENY
-FileETag {{ apache_fileetag | default('None') }}
-Header set X-XSS-Protection "1; mode=block"
-Header set Content-Security-Policy "default-src 'self';"
-TraceEnable {{ apache_traceenable | default('Off') }}
