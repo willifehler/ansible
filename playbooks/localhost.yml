@@ -8,3 +8,4 @@
     - roles/httpd
     - roles/php
     - roles/mysql
+    - roles/docker
