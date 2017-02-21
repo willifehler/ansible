@@ -20,5 +20,5 @@
         name: owncloud
         hostname: owncloud
         state: started
-        exposed_ports:
-          - 81
+        ports:
+          - "81:80"
