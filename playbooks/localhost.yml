@@ -9,3 +9,16 @@
     - roles/php
     - roles/mysql
     - roles/docker
+
+- name: start container
+  hosts: localhost
+  tasks:
+    - name: start owncloud container
+      docker_container:
+        image: centos
+        command: sleep infinity
+        name: owncloud
+        hostname: owncloud
+        state: started
+        exposed_ports:
+          - 81

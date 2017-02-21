@@ -1,13 +1,21 @@
 ---
-- name: ensure repo is present
+- name: create docker repo
   copy:
     src: files/docker-main.repo
     dest: /etc/yum.repos.d/docker-main.repo
 
-- name: ensure docker is installed
+- name: install Docker package
   yum:
     name: docker-engine
     state: present
 
 - name: start docker
   service: name=docker state=started enabled=yes
+
+- name: install pythin2-pip
+  yum:
+    name: python2-pip
+    state: present
+
+- pip:
+    name: docker-py
