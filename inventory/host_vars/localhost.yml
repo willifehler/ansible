@@ -58,16 +58,12 @@ apache_vhosts:
     - ServerAdmin willi@willi-fehler.de
     - DocumentRoot "/var/www/willi-fehler.de"
     - ServerName willi-fehler.de
-    - ServerAlias *.willi-fehler.de 
+    - ServerAlias *.willi-fehler.de willi-net.ddns.net
+    - RewriteEngine on
+    - RewriteCond %{HTTPS} off
+    - RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} 
     - ErrorLog /var/log/httpd/willi-fehler.de-error.log
     - CustomLog /var/log/httpd/willi-fehler.de-access.log combined
-  toni-fehler.de:
-    - ServerAdmin toni@toni-fehler.de
-    - DocumentRoot "/var/www/toni-fehler.de"
-    - ServerName toni-fehler.de
-    - ServerAlias *.toni-fehler.de
-    - ErrorLog /var/log/httpd/toni-fehler.de-error.log
-    - CustomLog /var/log/httpd/toni-fehler.de-access.log combined
 apache_vhosts_ssl:
   willi-fehler.de:
     - ServerAdmin willi@willi-fehler.de
@@ -80,13 +76,3 @@ apache_vhosts_ssl:
     - SSLCertificateFile /etc/letsencrypt/live/willi-net.ddns.net/cert.pem
     - SSLCertificateKeyFile /etc/letsencrypt/live/willi-net.ddns.net/privkey.pem
     - SSLCertificateChainFile /etc/letsencrypt/live/willi-net.ddns.net/chain.pem
-  toni-fehler.de:
-    - ServerAdmin toni@toni-fehler.de
-    - DocumentRoot "/var/www/toni-fehler.de"
-    - ServerName toni-fehler.de
-    - ServerAlias *.toni-fehler.de
-    - ErrorLog /var/log/httpd/toni-fehler.de-error.log
-    - CustomLog /var/log/httpd/toni-fehler.de-access.log combined
-    - SSLEngine on
-    - SSLCertificateFile /etc/pki/tls/certs/localhost.crt
-    - SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
