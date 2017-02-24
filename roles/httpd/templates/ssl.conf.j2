@@ -217,7 +217,6 @@ CustomLog logs/ssl_request_log \
 
 #HSTS
 Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
-Header always set X-Content-Type-Options nosniff
 SSLCompression off 
 SSLUseStapling on 
 SSLStaplingCache "shmcb:logs/stapling-cache(150000)" 

@@ -4,4 +4,5 @@ Header always set X-Frame-Options DENY
 FileETag {{ apache_fileetag | default('None') }}
 Header set X-XSS-Protection "1; mode=block"
 Header set Content-Security-Policy "default-src 'self';"
+Header always set X-Content-Type-Options nosniff
 TraceEnable {{ apache_traceenable | default('Off') }}
