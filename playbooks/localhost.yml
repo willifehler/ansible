@@ -15,10 +15,9 @@
   tasks:
     - name: start owncloud container
       docker_container:
-        image: centos
-        command: sleep infinity
-        name: owncloud
-        hostname: owncloud
+        image: willi/nextcloud
+        name: nextcloud
+        hostname: nextcloud
         state: started
         ports:
           - "81:80"
