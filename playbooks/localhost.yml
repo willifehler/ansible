@@ -10,10 +10,17 @@
     - roles/mysql
     - roles/docker
 
+- name: nextcloud volume create
+  hosts: localhost
+  tasks:
+    - name: nextcloud docker volume create
+      command: docker volume create --name nextcloud
+      ignore_errors: yes
+
 - name: start container
   hosts: localhost
   tasks:
-    - name: start owncloud container
+    - name: start nextcloud container
       docker_container:
         image: willi/nextcloud
         name: nextcloud
@@ -21,3 +28,5 @@
         state: started
         ports:
           - "81:80"
+        volumes:
+          - nextcloud:/var/www/html
