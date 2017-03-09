@@ -11,9 +11,5 @@
 {% for v in apache_vhosts_ssl[item] %}
   {{v}}
 {% endfor %}
-  SSLCipherSuite EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH
-  SSLProtocol All -SSLv2 -SSLv3
-  SSLHonorCipherOrder On
-  Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains; preload"
 </VirtualHost>
 {% endif %}
