@@ -60,17 +60,17 @@ apache_vhosts:
     - DocumentRoot "/var/www/willi-fehler.de"
     - ServerName willi-fehler.de
     - ServerAlias *.willi-fehler.de willi-net.ddns.net
-    - RewriteEngine on
+    - RewriteEngine On
     - RewriteCond %{HTTPS} off
-    - RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} 
+    - RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
     - ErrorLog /var/log/httpd/willi-fehler.de-error.log
     - CustomLog /var/log/httpd/willi-fehler.de-access.log combined
   nextcloudwilli-net.ddns.net:
     - ServerAdmin willi@willi-fehler.de
     - ServerName nextcloudwilli-net.ddns.net
-    - RewriteEngine on
+    - RewriteEngine On
     - RewriteCond %{HTTPS} off
-    - RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+    - RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
     - ErrorLog /var/log/httpd/nextcloudwilli-net.ddns.net-error.log
     - CustomLog /var/log/httpd/nextcloudwilli-net.ddns.net-access.log combined
 apache_vhosts_ssl:
