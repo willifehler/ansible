@@ -40,7 +40,7 @@ letsencrypt_domain_flags:
   - "-d nextcloudwilli-net.ddns.net"
  
 #MySQL
-server_id: 21
+mysql_server_id: 21
 mysql_databases:
   - name: willifehler
   - name: tonifehler

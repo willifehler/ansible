@@ -8,9 +8,44 @@ symbolic-links=0
 # customize your systemd unit file for mariadb according to the
 # instructions in http://fedoraproject.org/wiki/Systemd
 
-{% if server_id %}
-server-id = {{ server_id }}
+user=mysql
+default-storage-engine=InnoDB
+{% if mysql_server_id %}
+server-id = {{ mysql_server_id }}
 {% endif %}
+
+# MyISAM
+key-buffer-size={{ mysql_key_buffer_size | default('32M') }}
+myisam-recover=FORCE,BACKUP
+
+# SAFETY
+max-allowed-packet={{ mysql_max_allowed_packet | default('16M') }}
+max-connect-errors={{ mysql_max_connect_errors | default('1000000') }}
+skip-name-resolve
+
+# BINARY LOGGING
+log-bin=/var/lib/mysql/mysql-bin
+expire-logs-days={{ mysql_expire_logs_days | default('7') }}
+sync-binlog={{ mysql_sync_binlog | default('1') }}
+
+# CACHES AND LIMITS
+tmp-table-size={{ mysql_tmp_table_size | default('32M') }}
+max-heap-table-size={{ mysql_max_heap_table_size | default('32M') }}
+query-cache-type={{ mysql_query_cache_type | default('0') }}
+query-cache-size={{ mysql_query_cache_size | default('0') }}
+max-connections={{ mysql_max_connections | default('100') }}
+thread-cache-size={{ mysql_thread_cache_size | default('50') }}
+open-files-limit={{ mysql_open_files_limit | default('65535') }}
+table-definition-cache={{ mysql_table_definition_cache | default('4096') }}
+table-open-cache={{ mysql_table_open_cache | default('10240') }}
+
+# INNODB
+innodb-flush-method={{ mysql_innodb_flush_method | default('O_DIRECT') }}
+innodb-log-files-in-group={{ mysql_innodb_log_files_in_group | default('2') }}
+innodb-log-file-size={{ mysql_innodb_log_file_size | default('256M') }}
+innodb-flush-log-at-trx-commit={{ mysql_innodb_flush_log_at_trx_commit | default('1') }}
+innodb-file-per-table={{ mysql_innodb_file_per_table | default('1') }}
+innodb-buffer-pool-size={{ mysql_innodb_buffer_pool_size | default('128M') }}
 
 [mysqld_safe]
 log-error=/var/log/mariadb/mariadb.log
