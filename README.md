@@ -1,7 +1,7 @@
 # ansible
 My Ansible playbooks for manging CentOS 7
 
-* User/Groups
+* Users/Groups/Sudo
 * Common
 * Apache
 * PHP
