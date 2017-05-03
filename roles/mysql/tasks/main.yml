@@ -47,6 +47,9 @@
   template: src=templates/my.cnf.j2 dest=/etc/my.cnf
   notify:
     - restart mariadb
+
+- name: create MySQL logrotate
+  template: src=templates/mariadb.j2 dest=/etc/logrotate.d/mariadb
  
 - name: create MySQL databases
   mysql_db:
