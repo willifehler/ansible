@@ -19,6 +19,9 @@
   notify:
     - restart httpd
 
+- name: create logrotate
+  template: src=templates/httpd.j2 dest="/etc/logrotate.d/httpd"
+
 - name: create ssl configuration file
   template: src=templates/ssl.conf.j2 dest="/etc/httpd/conf.d/ssl.conf"
   notify:
