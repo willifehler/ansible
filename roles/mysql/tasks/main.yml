@@ -11,7 +11,7 @@
     value: 1
     state: present
 
-- name: start MySQL service
+- name: start MariaDB service
   service: name=mariadb state=started enabled=yes
 
 - name: generate new root password
