@@ -43,10 +43,10 @@ table-open-cache={{ mysql_table_open_cache | default('10240') }}
 # INNODB
 innodb-flush-method={{ mysql_innodb_flush_method | default('O_DIRECT') }}
 innodb-log-files-in-group={{ mysql_innodb_log_files_in_group | default('2') }}
-innodb-log-file-size={{ mysql_innodb_log_file_size | default('256M') }}
+innodb-log-file-size={{ mysql_innodb_log_file_size | default('64M') }}
 innodb-flush-log-at-trx-commit={{ mysql_innodb_flush_log_at_trx_commit | default('1') }}
 innodb-file-per-table={{ mysql_innodb_file_per_table | default('1') }}
-innodb-buffer-pool-size={{ mysql_innodb_buffer_pool_size | default('128M') }}
+innodb-buffer-pool-size={{ mysql_innodb_buffer_pool_size | default('512M') }}
 
 [mysqld_safe]
 log-error=/var/log/mariadb/mariadb.log
