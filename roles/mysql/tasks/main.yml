@@ -47,6 +47,22 @@
   template: src=templates/my.cnf.j2 dest=/etc/my.cnf
   notify:
     - restart mariadb
+  register: mysql_innodb_log_file_size
+  
+- name: Ensure MariaDB is started after changing innodb_log_file_size
+  service: "name=mariadb state=stopped"
+  when: mysql_innodb_log_file_size.changed
+
+- name: Delete innodb log files
+  file: path=/var/lib/mysql/{{item}} state=absent
+  with_items:
+          - "ib_logfile0"
+          - "ib_logfile1"
+  when: mysql_innodb_log_file_size.changed
+  
+- name: Ensure MariaDB is started after changing innodb_log_file_size
+  service: "name=mariadb state=started"
+  when: mysql_innodb_log_file_size.changed
 
 - name: create MySQL logrotate
   template: src=templates/mariadb.j2 dest=/etc/logrotate.d/mariadb
