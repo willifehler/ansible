@@ -76,8 +76,8 @@ AuthorizedKeysFile	.ssh/authorized_keys
 
 # To disable tunneled clear text passwords, change to no here!
 #PasswordAuthentication yes
-#PermitEmptyPasswords no
-PasswordAuthentication yes
+PermitEmptyPasswords {{ ssh_permit_empty_passwords | default('no') }}
+PasswordAuthentication {{ ssh_password_authentication | default('yes') }}
 
 # Change to no to disable s/key passwords
 #ChallengeResponseAuthentication yes
@@ -124,8 +124,8 @@ X11Forwarding yes
 UsePrivilegeSeparation sandbox		# Default for new installations.
 #PermitUserEnvironment no
 #Compression delayed
-#ClientAliveInterval 0
-#ClientAliveCountMax 3
+ClientAliveInterval {{ ssh_client_alive_interval | default('600') }}
+ClientAliveCountMax {{ ssh_client_alive_count_max | default('0') }}
 #ShowPatchLevel no
 #UseDNS yes
 #PidFile /var/run/sshd.pid
