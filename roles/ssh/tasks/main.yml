@@ -1,4 +1,9 @@
 ---
+- name: install the latest version of OpenSSH
+  yum: name={{ item }}  state=latest
+  with_items:
+    - openssh-server
+
 - name: create sshd configuration file
   template: src=templates/sshd_config.j2 dest="/etc/ssh/sshd_config"
   notify:
