@@ -37,6 +37,7 @@ HostKey /etc/ssh/ssh_host_ed25519_key
 # Ciphers and keying
 #RekeyLimit default none
 Ciphers aes128-ctr,aes192-ctr,aes256-ctr
+MACs hmac-sha2-512,hmac-sha2-256
 
 # Logging
 # obsoletes QuietMode and FascistLogging
@@ -70,7 +71,7 @@ AuthorizedKeysFile	.ssh/authorized_keys
 HostbasedAuthentication {{ ssh_host_based_authentication | default('no') }}
 # Change to yes if you don't trust ~/.ssh/known_hosts for
 # RhostsRSAAuthentication and HostbasedAuthentication
-#IgnoreUserKnownHosts no
+IgnoreUserKnownHosts {{ ssh_ignore_user_known_hosts | default('yes') }}
 # Don't read the user's ~/.rhosts and ~/.shosts files
 IgnoreRhosts {{ ssh_ignore_rhosts | default('yes') }}
 
@@ -91,7 +92,7 @@ ChallengeResponseAuthentication no
 #KerberosUseKuserok yes
 
 # GSSAPI options
-GSSAPIAuthentication yes
+GSSAPIAuthentication {{ ssh_gssapi_authentication | default('no') }}
 GSSAPICleanupCredentials no
 #GSSAPIStrictAcceptorCheck yes
 #GSSAPIKeyExchange no
