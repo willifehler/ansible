@@ -10,6 +10,10 @@ My Ansible playbooks for manging CentOS 7
 * Certbot
 * Docker
 
+To execute Ansible run:
+```
+ansible-playbook -i inventory/inventory playbooks/localhost.yml
+```
 
 
 
