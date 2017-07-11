@@ -93,6 +93,7 @@ apache_vhosts_ssl:
     - "Header set Content-Security-Policy \"default-src 'self';\""
     - Header always set X-Content-Type-Options nosniff
     - Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains; preload"
+    - Header always set Referrer-Policy "no-referrer"
   nextcloudwilli-net.ddns.net:
     - ServerAdmin willi@willi-fehler.de
     - ServerName nextcloudwilli-net.ddns.net
@@ -109,3 +110,4 @@ apache_vhosts_ssl:
     - SSLCertificateChainFile /etc/letsencrypt/live/willi-net.ddns.net/chain.pem
     - Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains; preload"
     - "Header set Content-Security-Policy \"default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; child-src *; img-src * data: blob:; font-src 'self' data:; media-src *; connect-src *;\""
+    - Header always set Referrer-Policy "no-referrer"
