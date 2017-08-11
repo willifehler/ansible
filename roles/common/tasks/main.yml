@@ -21,6 +21,7 @@
     - vim
     - git
     - tree
+    - yum-utils
 
 - name: ensure ntp is at the latest version
   yum: name=ntp state=latest
